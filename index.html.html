@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YAMARU 碳陶煞車盤 (CCB) 專業規格匹配系統 Ultra Pro</title>
+    <style>
+        :root {
+            --bg-dark: #121212;
+            --card-bg: #1e1e1e;
+            --accent-gold: #ffb703;
+            --accent-orange: #fb8500;
+            --accent-green: #06d6a0;
+            --accent-neon-yellow: #ccff00;
+            --accent-neon-green: #00ff66;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --border-color: #333333;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.6rem;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .lang-select {
+            background-color: #2a2a2a;
+            color: var(--accent-gold);
+            border: 1px solid var(--accent-gold);
+            padding: 9px 12px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .lang-select option {
+            background-color: #1e1e1e;
+            color: var(--text-main);
+        }
+
+        button {
+            background-color: #2a2a2a;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--accent-orange);
+            color: #000;
+        }
+
+        .btn-gold {
+            background-color: var(--accent-gold);
+            color: #000;
+            font-weight: bold;
+        }
+
+        .btn-gold:hover {
+            background-color: var(--accent-orange);
+        }
+
+        .select-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        select, input {
+            background-color: #2a2a2a;
+            color: #fff;
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        select:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background-color: var(--accent-gold);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .mid-card {
+            border: 1px solid var(--accent-orange);
+            background: linear-gradient(145deg, #1e1e1e, #261f18);
+        }
+
+        .upgrade-card {
+            border: 1px solid var(--accent-gold);
+            background: linear-gradient(145deg, #1e1e1e, #25231c);
+        }
+
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+
+        .row-sub-title {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: var(--accent-orange);
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #444;
+            padding-bottom: 5px;
+        }
+
+        .spec-box {
+            background-color: #141414;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-orange);
+        }
+
+        .spec-box .val {
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: #fff;
+            margin-top: 5px;
+        }
+
+        .neon-box {
+            border-left: 4px solid var(--accent-neon-yellow);
+            background-color: #0f140d;
+        }
+
+        .val-neon {
+            font-size: 1.4rem !important;
+            font-weight: 900;
+            color: var(--accent-neon-yellow) !important;
+            text-shadow: 0 0 10px rgba(204, 255, 0, 0.4);
+            letter-spacing: 0.5px;
+            margin-top: 6px;
+            line-height: 1.3;
+        }
+
+        .val-neon-sm {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--accent-neon-yellow);
+            text-shadow: 0 0 8px rgba(204, 255, 0, 0.4);
+            margin: 0 4px;
+            display: inline-block;
+        }
+
+        .badge-green { 
+            background-color: var(--accent-green); 
+            color: #000; 
+            font-size: 1.2rem; 
+            padding: 3px 8px;
+            border-radius: 4px;
+            vertical-align: middle;
+        }
+
+        .loading-text {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+            .select-bar, .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        @media print {
+            body { background-color: #fff; color: #000; }
+            .controls, .select-bar, button { display: none; }
+            .card { border: 1px solid #ccc; box-shadow: none; background: #fff; color: #000; }
+            .spec-box { background: #f9f9f9; color: #000; border-left-color: #000; }
+            .spec-box .val { color: #000; }
+            .section-title { color: #000; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1 id="appTitle">YAMARU 碳陶煞車盤 (CCB) 專業規格匹配系統 Ultra Pro</h1>
+        <div class="controls">
+            <select id="langSelect" class="lang-select" onchange="changeLanguage()">
+                <option value="zh-TW" selected>中 (繁體)</option>
+                <option value="zh-CN">中 (简体)</option>
+                <option value="en">English</option>
+                <option value="ja">日本語</option>
+            </select>
+            <button id="btnToggleManual" onclick="toggleManualMode()">切換手動/API模式</button>
+            <button id="btnPrint" class="btn-gold" onclick="window.print()">列印 / 產生施工報價單 PDF</button>
+        </div>
+    </header>
+
+    <!-- 3層選單：品牌 -> 年份 -> 車款 -->
+    <div class="select-bar" id="apiSelectBar">
+        <div class="form-group">
+            <label id="lblBrand">1. 選擇汽車品牌 (Brand)</label>
+            <select id="brandSelect" onchange="onBrandChange()">
+                <option value="">-- 請選擇品牌 --</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label id="lblYear">2. 選擇年份 (Year)</label>
+            <select id="yearSelect" onchange="onYearChange()" disabled>
+                <option value="">-- 請先選擇品牌 --</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label><span id="lblModel">3. 選擇車款 (Model)</span> <span id="modelLoading" class="loading-text">載入中...</span></label>
+            <select id="modelSelect" onchange="renderSpecs()" disabled>
+                <option value="">-- 請先選擇年份 --</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- 上行：原始數據 -->
+    <div class="section-title" id="secTitleOriginal">上行：目前車輛原廠原始出廠數據</div>
+    <div class="card">
+        <div class="grid-4" style="margin-bottom: 15px;">
+            <div class="spec-box"><label id="lblOemFront">原廠前煞車盤徑</label><div class="val" id="oemFront">-</div></div>
+            <div class="spec-box"><label id="lblOemRear">原廠後煞車盤徑</label><div class="val" id="oemRear">-</div></div>
+            <div class="spec-box"><label id="lblPcdCb">螺絲孔距 (PCD) / 中心孔 (CB)</label><div class="val" id="pcdCb" style="color: var(--accent-gold);">-</div></div>
+            <div class="spec-box"><label id="lblOemLug">原廠螺絲/螺帽 規格 (長度)</label><div class="val" id="oemLug" style="color: var(--accent-gold);">-</div></div>
+        </div>
+        <div class="grid-4">
+            <div class="spec-box"><label id="lblEngineType">引擎型號</label><div class="val" id="engineType">-</div></div>
+            <div class="spec-box"><label id="lblPowerTorque">最大馬力 / 最大扭力</label><div class="val" id="powerTorque">-</div></div>
+            <div class="spec-box"><label id="lblGearbox">變速箱型號</label><div class="val" id="gearbox">-</div></div>
+            <div class="spec-box"><label id="lblDrivetrain">動力驅動方式</label><div class="val" id="drivetrain">-</div></div>
+        </div>
+    </div>
+
+    <!-- 中行：雙行佈局 (目前裝設輪圈 vs 預計更改輪圈) -->
+    <div class="section-title" id="secTitleWheels">中行：前後軸輪圈搭配與尺寸變更（前後獨立設定）</div>
+    <div class="card mid-card">
+        
+        <div class="row-sub-title" id="subTitleCurrentWheels">【目前車輛出廠 / 現車安裝輪圈規格】</div>
+        <div class="grid-2" style="margin-bottom: 20px;">
+            <div class="spec-box">
+                <label id="lblCurrentFrontWheel" style="color: var(--accent-gold);">前輪原廠/現車輪圈尺寸</label>
+                <div class="val" id="currentFrontWheelDisplay">-</div>
+            </div>
+            <div class="spec-box">
+                <label id="lblCurrentRearWheel" style="color: var(--accent-gold);">後輪原廠/現車輪圈尺寸</label>
+                <div class="val" id="currentRearWheelDisplay">-</div>
+            </div>
+        </div>
+
+        <div class="row-sub-title" id="subTitleNewWheels">【預計升級 / 欲更改之改裝輪圈規格】</div>
+        <div class="grid-2">
+            <!-- 前輪改裝設定 -->
+            <div class="form-group" style="background-color: #181818; padding: 12px; border-radius: 8px;">
+                <label id="lblNewFrontBox" style="color: var(--accent-green); font-weight: bold;">前輪 (Front) 欲更改規格</label>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 5px;">
+                    <div>
+                        <label class="lblInch">吋數</label>
+                        <select id="newFrontSize" onchange="calculateDynamicUpgrade()">
+                            <option value="18">18 吋</option>
+                            <option value="19" selected>19 吋</option>
+                            <option value="20">20 吋</option>
+                            <option value="21">21 吋</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="lblJ">J 數</label>
+                        <select id="newFrontJ" onchange="calculateDynamicUpgrade()">
+                            <option value="8.0">8.0 J</option>
+                            <option value="8.5" selected>8.5 J</option>
+                            <option value="9.0">9.0 J</option>
+                            <option value="9.5">9.5 J</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="lblET">ET 值</label>
+                        <select id="newFrontET" onchange="calculateDynamicUpgrade()">
+                            <option value="40">ET 40</option>
+                            <option value="35">ET 35</option>
+                            <option value="25" selected>ET 25</option>
+                            <option value="20">ET 20</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 後輪改裝設定 -->
+            <div class="form-group" style="background-color: #181818; padding: 12px; border-radius: 8px;">
+                <label id="lblNewRearBox" style="color: var(--accent-green); font-weight: bold;">後輪 (Rear) 欲更改規格</label>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 5px;">
+                    <div>
+                        <label class="lblInch">吋數</label>
+                        <select id="newRearSize" onchange="calculateDynamicUpgrade()">
+                            <option value="18">18 吋</option>
+                            <option value="19" selected>19 吋</option>
+                            <option value="20">20 吋</option>
+                            <option value="21">21 吋</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="lblJ">J 數</label>
+                        <select id="newRearJ" onchange="calculateDynamicUpgrade()">
+                            <option value="9.0">9.0 J</option>
+                            <option value="9.5" selected>9.5 J</option>
+                            <option value="10.0">10.0 J</option>
+                            <option value="10.5">10.5 J</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="lblET">ET 值</label>
+                        <select id="newRearET" onchange="calculateDynamicUpgrade()">
+                            <option value="40">ET 40</option>
+                            <option value="35">ET 35</option>
+                            <option value="25" selected>ET 25</option>
+                            <option value="20">ET 20</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 下行：升級方案 (自動運算結果) -->
+    <div class="section-title" id="secTitleUpgrade">下行：YAMARU 自動計算之最適配碳陶升級與硬體配套方案</div>
+    <div class="card upgrade-card">
+        <div class="grid-4" style="margin-bottom: 15px;">
+            <div class="spec-box neon-box">
+                <label id="lblCcbFrontSize" style="color: var(--accent-neon-yellow); font-weight: bold;">推薦前碳陶盤尺寸 (Front CCB)</label>
+                <div class="val val-neon" id="ccbFrontSize">No. 058 (380x36xD60)</div>
+            </div>
+            <div class="spec-box neon-box">
+                <label id="lblCcbRearSize" style="color: var(--accent-neon-yellow); font-weight: bold;">推薦後碳陶盤尺寸 (Rear CCB)</label>
+                <div class="val val-neon" id="ccbRearSize">No. 042 (370x30xD60)</div>
+            </div>
+            <div class="spec-box">
+                <label id="lblUpgradeLug" style="color: var(--accent-gold);">建議 (BOLT)螺絲 / (NUT) 螺帽 (含長度試算)</label>
+                <div class="val" id="upgradeLug" style="line-height: 1.8; margin-top: 8px;">
+                    -
+                </div>
+            </div>
+            <div class="spec-box" style="border-left-color: var(--accent-green);">
+                <label id="lblWeightSaving">簧下重量減輕效益 (Unsprung Weight)</label>
+                <div class="val" id="weightSaving" style="color: var(--accent-green);">-</div>
+            </div>
+        </div>
+
+        <div class="grid-3" style="margin-bottom: 15px;">
+            <!-- 【新增/優化】：可由客戶自行選取的 D碼（中心花盒）下拉選單 -->
+            <div class="spec-box">
+                <label id="lblHatSelect" style="color: var(--accent-gold);">中心花盒結構 (D碼選擇 / 搭配卡鉗)</label>
+                <select id="hatSelect" onchange="calculateDynamicUpgrade()" style="margin-top: 5px;">
+                    <!-- JS 動態寫入選單 -->
+                </select>
+            </div>
+            <div class="spec-box">
+                <label id="lblCcbType" style="color: var(--accent-gold);">碳陶盤結構系列 (纖維系列)</label>
+                <select id="ccbTypeSelect" onchange="calculateDynamicUpgrade()" style="margin-top: 5px;">
+                    <!-- JS 動態寫入選單 -->
+                </select>
+            </div>
+            <div class="spec-box">
+                <label id="lblPadSelect" style="color: var(--accent-gold);">推薦專用煞車皮 (配方選擇)</label>
+                <select id="padSelect" onchange="calculateDynamicUpgrade()" style="margin-top: 5px; margin-bottom: 8px;">
+                    <!-- JS 動態寫入選單 -->
+                </select>
+                <div class="val" id="padDetail" style="font-size: 0.88rem; font-weight: normal; color: #e0e0e0;">-</div>
+            </div>
+        </div>
+
+        <div class="grid-3">
+            <div class="spec-box">
+                <label id="lblEpbDetail">後軸 EPB 電子手煞車與卡鉗轉接配套</label>
+                <div class="val" id="epbDetail" style="font-size: 0.88rem; font-weight: normal; color: #e0e0e0;">-</div>
+            </div>
+            <div class="spec-box">
+                <label id="lblSafetyDetail">螺絲安全鎖固深度與總泵腳感建議</label>
+                <div class="val" id="safetyDetail" style="font-size: 0.88rem; font-weight: normal; color: #e0e0e0;">-</div>
+            </div>
+            <div class="spec-box">
+                <label id="lblClearanceDetail">改裝軸套 (Hub Ring) 與卡鉗橫向 X-Factor 隙樣</label>
+                <div class="val" id="clearanceDetail" style="font-size: 0.88rem; font-weight: normal; color: #e0e0e0;">-</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// YAMARU 102 款碳陶煞車盤標準規格庫 (無縫接軌實體圖表)
+const yamaru102Specs = [
+    { no: "001", d: 330, t: 22, d1: "D54", spec: "330 x 22 x D54" },
+    { no: "002", d: 330, t: 22, d1: "D60", spec: "330 x 22 x D60" },
+    { no: "003", d: 330, t: 24, d1: "D54", spec: "330 x 24 x D54" },
+    { no: "004", d: 330, t: 24, d1: "D60", spec: "330 x 24 x D60" },
+    { no: "005", d: 330, t: 26, d1: "D54", spec: "330 x 26 x D54" },
+    { no: "006", d: 330, t: 26, d1: "D60", spec: "330 x 26 x D60" },
+    { no: "007", d: 335, t: 22, d1: "D54", spec: "335 x 22 x D54" },
+    { no: "008", d: 335, t: 22, d1: "D60", spec: "335 x 22 x D60" },
+    { no: "009", d: 335, t: 24, d1: "D54", spec: "335 x 24 x D54" },
+    { no: "010", d: 335, t: 24, d1: "D60", spec: "335 x 24 x D60" },
+    { no: "011", d: 335, t: 26, d1: "D54", spec: "335 x 26 x D54" },
+    { no: "012", d: 335, t: 26, d1: "D60", spec: "335 x 26 x D60" },
+    { no: "013", d: 345, t: 24, d1: "D54", spec: "345 x 24 x D54" },
+    { no: "014", d: 345, t: 24, d1: "D60", spec: "345 x 24 x D60" },
+    { no: "015", d: 345, t: 26, d1: "D54", spec: "345 x 26 x D54" },
+    { no: "016", d: 345, t: 26, d1: "D60", spec: "345 x 26 x D60" },
+    { no: "017", d: 350, t: 24, d1: "D54", spec: "350 x 24 x D54" },
+    { no: "018", d: 350, t: 24, d1: "D60", spec: "350 x 24 x D60" },
+    { no: "019", d: 350, t: 26, d1: "D54", spec: "350 x 26 x D54" },
+    { no: "020", d: 350, t: 26, d1: "D60", spec: "350 x 26 x D60" },
+    { no: "021", d: 355, t: 28, d1: "D54", spec: "355 x 28 x D54" },
+    { no: "022", d: 355, t: 28, d1: "D60", spec: "355 x 28 x D60" },
+    { no: "023", d: 355, t: 30, d1: "D54", spec: "355 x 30 x D54" },
+    { no: "024", d: 355, t: 30, d1: "D60", spec: "355 x 30 x D60" },
+    { no: "025", d: 355, t: 32, d1: "D54", spec: "355 x 32 x D54" },
+    { no: "026", d: 355, t: 32, d1: "D60", spec: "355 x 32 x D60" },
+    { no: "027", d: 360, t: 28, d1: "D54", spec: "360 x 28 x D54" },
+    { no: "028", d: 360, t: 28, d1: "D60", spec: "360 x 28 x D60" },
+    { no: "029", d: 360, t: 30, d1: "D54", spec: "360 x 30 x D54" },
+    { no: "030", d: 360, t: 30, d1: "D60", spec: "360 x 30 x D60" },
+    { no: "031", d: 360, t: 32, d1: "D54", spec: "360 x 32 x D54" },
+    { no: "032", d: 360, t: 32, d1: "D60", spec: "360 x 32 x D60" },
+    { no: "033", d: 360, t: 34, d1: "D54", spec: "360 x 34 x D54" },
+    { no: "034", d: 360, t: 34, d1: "D60", spec: "360 x 34 x D60" },
+    { no: "035", d: 365, t: 28, d1: "D54", spec: "365 x 28 x D54" },
+    { no: "036", d: 365, t: 28, d1: "D60", spec: "365 x 28 x D60" },
+    { no: "037", d: 365, t: 30, d1: "D54", spec: "365 x 30 x D54" },
+    { no: "038", d: 365, t: 30, d1: "D60", spec: "365 x 30 x D60" },
+    { no: "039", d: 365, t: 32, d1: "D54", spec: "365 x 32 x D54" },
+    { no: "040", d: 365, t: 32, d1: "D60", spec: "365 x 32 x D60" },
+    { no: "041", d: 370, t: 30, d1: "D54", spec: "370 x 30 x D54" },
+    { no: "042", d: 370, t: 30, d1: "D60", spec: "370 x 30 x D60" },
+    { no: "043", d: 370, t: 32, d1: "D54", spec: "370 x 32 x D54" },
+    { no: "044", d: 370, t: 32, d1: "D60", spec: "370 x 32 x D60" },
+    { no: "045", d: 370, t: 34, d1: "D54", spec: "370 x 34 x D54" },
+    { no: "046", d: 370, t: 34, d1: "D60", spec: "370 x 34 x D60" },
+    { no: "047", d: 375, t: 30, d1: "D54", spec: "375 x 30 x D54" },
+    { no: "048", d: 375, t: 30, d1: "D60", spec: "375 x 30 x D60" },
+    { no: "049", d: 375, t: 32, d1: "D54", spec: "375 x 32 x D54" },
+    { no: "050", d: 375, t: 32, d1: "D60", spec: "375 x 32 x D60" },
+    { no: "051", d: 375, t: 34, d1: "D54", spec: "375 x 34 x D54" },
+    { no: "052", d: 375, t: 34, d1: "D60", spec: "375 x 34 x D60" },
+    { no: "053", d: 380, t: 32, d1: "D54", spec: "380 x 32 x D54" },
+    { no: "054", d: 380, t: 32, d1: "D60", spec: "380 x 32 x D60" },
+    { no: "055", d: 380, t: 34, d1: "D54", spec: "380 x 34 x D54" },
+    { no: "056", d: 380, t: 34, d1: "D60", spec: "380 x 34 x D60" },
+    { no: "057", d: 380, t: 36, d1: "D54", spec: "380 x 36 x D54" },
+    { no: "058", d: 380, t: 36, d1: "D60", spec: "380 x 36 x D60" },
+    { no: "059", d: 385, t: 32, d1: "D54", spec: "385 x 32 x D54" },
+    { no: "060", d: 385, t: 32, d1: "D60", spec: "385 x 32 x D60" },
+    { no: "061", d: 385, t: 34, d1: "D54", spec: "385 x 34 x D54" },
+    { no: "062", d: 385, t: 34, d1: "D60", spec: "385 x 34 x D60" },
+    { no: "063", d: 385, t: 36, d1: "D54", spec: "385 x 36 x D54" },
+    { no: "064", d: 385, t: 36, d1: "D60", spec: "385 x 36 x D60" },
+    { no: "065", d: 390, t: 34, d1: "D60", spec: "390 x 34 x D60" },
+    { no: "066", d: 390, t: 36, d1: "D54", spec: "390 x 36 x D54" },
+    { no: "067", d: 390, t: 36, d1: "D60", spec: "390 x 36 x D60" },
+    { no: "068", d: 395, t: 34, d1: "D54", spec: "395 x 34 x D54" },
+    { no: "069", d: 395, t: 34, d1: "D60", spec: "395 x 34 x D60" },
+    { no: "070", d: 395, t: 36, d1: "D54", spec: "395 x 36 x D54" },
+    { no: "071", d: 395, t: 36, d1: "D60", spec: "395 x 36 x D60" },
+    { no: "072", d: 400, t: 34, d1: "D60", spec: "400 x 34 x D60" },
+    { no: "073", d: 400, t: 36, d1: "D54", spec: "400 x 36 x D54" },
+    { no: "074", d: 400, t: 36, d1: "D60", spec: "400 x 36 x D60" },
+    { no: "075", d: 405, t: 36, d1: "D54", spec: "405 x 36 x D54" },
+    { no: "076", d: 405, t: 36, d1: "D60", spec: "405 x 36 x D60" },
+    { no: "077", d: 410, t: 36, d1: "D54", spec: "410 x 36 x D54" },
+    { no: "078", d: 410, t: 36, d1: "D60", spec: "410 x 36 x D60" },
+    { no: "079", d: 410, t: 38, d1: "D54", spec: "410 x 38 x D54" },
+    { no: "080", d: 410, t: 38, d1: "D60", spec: "410 x 38 x D60" },
+    { no: "081", d: 415, t: 38, d1: "D54", spec: "415 x 38 x D54" },
+    { no: "082", d: 415, t: 38, d1: "D60", spec: "415 x 38 x D60" },
+    { no: "083", d: 420, t: 36, d1: "D60", spec: "420 x 36 x D60" },
+    { no: "084", d: 420, t: 38, d1: "D54", spec: "420 x 38 x D54" },
+    { no: "085", d: 420, t: 38, d1: "D60", spec: "420 x 38 x D60" },
+    { no: "086", d: 420, t: 40, d1: "D54", spec: "420 x 40 x D54" },
+    { no: "087", d: 425, t: 38, d1: "D54", spec: "425 x 38 x D54" },
+    { no: "088", d: 425, t: 38, d1: "D60", spec: "425 x 38 x D60" },
+    { no: "089", d: 425, t: 40, d1: "D54", spec: "425 x 40 x D54" },
+    { no: "090", d: 430, t: 38, d1: "D54", spec: "430 x 38 x D54" },
+    { no: "091", d: 430, t: 38, d1: "D60", spec: "430 x 38 x D60" },
+    { no: "092", d: 430, t: 40, d1: "D54", spec: "430 x 40 x D54" },
+    { no: "093", d: 430, t: 40, d1: "D60", spec: "430 x 40 x D60" },
+    { no: "094", d: 435, t: 40, d1: "D54", spec: "435 x 40 x D54" },
+    { no: "095", d: 435, t: 40, d1: "D60", spec: "435 x 40 x D60" },
+    { no: "096", d: 440, t: 38, d1: "D54", spec: "440 x 38 x D54" },
+    { no: "097", d: 440, t: 38, d1: "D60", spec: "440 x 38 x D60" },
+    { no: "098", d: 440, t: 40, d1: "D54", spec: "440 x 40 x D54" },
+    { no: "099", d: 440, t: 40, d1: "D60", spec: "440 x 40 x D60" },
+    { no: "100", d: 440, t: 40, d1: "D67", spec: "440 x 40 x D67" },
+    { no: "101", d: 440, t: 40, d1: "D76", spec: "440 x 40 x D76" },
+    { no: "102", d: 440, t: 40, d1: "D101", spec: "440 x 40 x D101" }
+];
+
+// 多國語言字典
+const i18n = {
+    "zh-TW": {
+        appTitle: "YAMARU 碳陶煞車盤 (CCB) 專業規格匹配系統 Ultra Pro",
+        btnToggleManual: "切換手動/API模式",
+        btnPrint: "列印 / 產生施工報價單 PDF",
+        lblBrand: "1. 選擇汽車品牌 (Brand)",
+        lblYear: "2. 選擇年份 (Year)",
+        lblModel: "3. 選擇車款 (Model)",
+        modelLoading: "載入中...",
+        optSelectBrand: "-- 請選擇品牌 --",
+        optSelectYear: "-- 請選擇年份 --",
+        optSelectModel: "-- 請選擇車款 --",
+        optFirstBrand: "-- 請先選擇品牌 --",
+        optFirstYear: "-- 請先選擇年份 --",
+        yearUnit: " 年",
+        secTitleOriginal: "上行：目前車輛原廠原始出廠數據",
+        lblOemFront: "原廠前煞車盤徑",
+        lblOemRear: "原廠後煞車盤徑",
+        lblPcdCb: "螺絲孔距 (PCD) / 中心孔 (CB)",
+        lblOemLug: "原廠螺絲/螺帽 規格 (長度)",
+        lblEngineType: "引擎型號",
+        lblPowerTorque: "最大馬力 / 最大扭力",
+        lblGearbox: "變速箱型號",
+        lblDrivetrain: "動力驅動方式",
+        secTitleWheels: "中行：前後軸輪圈搭配與尺寸變更（前後獨立設定）",
+        subTitleCurrentWheels: "【目前車輛出廠 / 現車安裝輪圈規格】",
+        lblCurrentFrontWheel: "前輪原廠/現車輪圈尺寸",
+        lblCurrentRearWheel: "後輪原廠/現車輪圈尺寸",
+        subTitleNewWheels: "【預計升級 / 欲更改之改裝輪圈規格】",
+        lblNewFrontBox: "前輪 (Front) 欲更改規格",
+        lblNewRearBox: "後輪 (Rear) 欲更改規格",
+        lblInch: "吋數",
+        lblJ: "J 數",
+        lblET: "ET 值",
+        unitInch: "吋",
+        secTitleUpgrade: "下行：YAMARU 自動計算之最適配碳陶升級與硬體配套方案",
+        lblCcbFrontSize: "推薦前碳陶盤尺寸 (Front CCB)",
+        lblCcbRearSize: "推薦後碳陶盤尺寸 (Rear CCB)",
+        lblHatSelect: "中心花盒結構 (D碼選擇 / 搭配卡鉗)",
+        lblUpgradeLug: "建議 (BOLT)螺絲 / (NUT) 螺帽 (含長度試算)",
+        lblWeightSaving: "簧下重量減輕效益 (Unsprung Weight)",
+        lblCcbType: "碳陶盤結構系列 (纖維系列)",
+        lblPadSelect: "推薦專用煞車皮 (配方選擇)",
+        lblEpbDetail: "後軸 EPB 電子手煞車與卡鉗轉接配套",
+        lblSafetyDetail: "螺絲安全鎖固深度與總泵腳感建議",
+        lblClearanceDetail: "改裝軸套 (Hub Ring) 與卡鉗橫向 X-Factor 隙樣",
+        
+        lugSpec: "螺絲規格：",
+        safeLen: "安全長度：",
+        unsprungText: "簧下重量降低 ~45%",
+        unsprungDesc: "(顯著提升避震器反應速度與再加速敏捷度)",
+        epbTitle: "【後軸機構】",
+        epbSpaceTitle: "【轉接空間】",
+        epbSpaceDesc: "後盤徑已配至 {rearCCB}，卡鉗與 EPB 馬達圓周安裝空間充裕，無須縮小主煞車卡鉗尺寸。",
+        screwTurnsTitle: "【螺絲鎖固圈數】",
+        screwTurnsMin: "最小安全需求：",
+        masterCylinderTitle: "【總泵推力適配】",
+        masterCylinderDesc: "建議搭配總活塞面積 ≤ 4,800 mm² 之卡鉗，維持原廠線性腳感。",
+        hubRingTitle: "【專用中心軸套】",
+        hubRingDesc: "{cbVal}mm 轉 73.1mm",
+        caliperXTitle: "【卡鉗隙樣】",
+        caliperXFront: "前輪 (ET{newFrontET}/{newFrontJ}J) 外擴 {etDiff}mm",
+        caliperXRear: "後輪 (ET{newRearET}/{newRearJ}J)",
+        caliperXSpace: "，X-Factor 空間充裕。",
+        manualAlert: "已切換為自訂手動填寫模式，您可以直接更改畫面上任意數值與表格。",
+        
+        // D-Code options
+        hatOptions: {
+            D60: "D60 (大花盒 / 推薦大六,大八活塞卡鉗)",
+            D54: "D54 (小花盒 / 推薦雙向,單向浮動卡鉗)"
+        },
+        // CCB options
+        ccbOptions: {
+            SS: "SS 短纖 (街道系列)",
+            SCS: "SCS 短纖+塗層 (運動塗層系列)",
+            TS: "TS 長纖 (賽道系列)",
+            TCS: "TCS 長纖+塗層 (專業競技塗層系列)",
+            LFFS: "LFFS 長纖氈體 (頂級競技系列)"
+        },
+        // Pad options
+        padOptions: {
+            STREET: { opt: "STREET 街道版 (摩擦係數 0.42 / 耐溫 600°C)", name: "STREET 街道版", mu: "0.42", temp: "600°C", feature: "高舒適度、低粉塵與安靜表現。" },
+            SPORT: { opt: "SPORT 運動版 (摩擦係數 0.50 / 耐溫 650°C)", name: "SPORT 運動版", mu: "0.50", temp: "650°C", feature: "兼顧線性腳感與連續煞車抗熱衰能力。" },
+            RACING: { opt: "RACING 競技版 (摩擦係數 0.60 / 耐溫 700°C)", name: "RACING 競技版", mu: "0.60", temp: "700°C", feature: "極高摩擦力，專為極限高溫負荷設計。" }
+        }
+    },
+    "zh-CN": {
+        appTitle: "YAMARU 碳陶刹车盘 (CCB) 专业规格匹配系统 Ultra Pro",
+        btnToggleManual: "切换手动/API模式",
+        btnPrint: "打印 / 生成施工报价单 PDF",
+        lblBrand: "1. 选择汽车品牌 (Brand)",
+        lblYear: "2. 选择年份 (Year)",
+        lblModel: "3. 选择车款 (Model)",
+        modelLoading: "加载中...",
+        optSelectBrand: "-- 请选择品牌 --",
+        optSelectYear: "-- 请选择年份 --",
+        optSelectModel: "-- 请选择车款 --",
+        optFirstBrand: "-- 请先选择品牌 --",
+        optFirstYear: "-- 请先选择年份 --",
+        yearUnit: " 年",
+        secTitleOriginal: "上行：目前车辆原厂原始出厂数据",
+        lblOemFront: "原厂前刹车盘径",
+        lblOemRear: "原厂后刹车盘径",
+        lblPcdCb: "螺丝孔距 (PCD) / 中心孔 (CB)",
+        lblOemLug: "原厂螺丝/螺帽 规格 (长度)",
+        lblEngineType: "发动机型号",
+        lblPowerTorque: "最大马力 / 最大扭矩",
+        lblGearbox: "变速箱型号",
+        lblDrivetrain: "动力驱动方式",
+        secTitleWheels: "中行：前后轴轮毂搭配与尺寸变更（前后独立设定）",
+        subTitleCurrentWheels: "【目前车辆出厂 / 现车安装轮毂规格】",
+        lblCurrentFrontWheel: "前轮原厂/现车轮毂尺寸",
+        lblCurrentRearWheel: "后轮原厂/现车轮毂尺寸",
+        subTitleNewWheels: "【预计升级 / 欲更改之改装轮毂规格】",
+        lblNewFrontBox: "前轮 (Front) 欲更改规格",
+        lblNewRearBox: "后轮 (Rear) 欲更改规格",
+        lblInch: "吋数",
+        lblJ: "J 数",
+        lblET: "ET 值",
+        unitInch: "吋",
+        secTitleUpgrade: "下行：YAMARU 自动计算之最适配碳陶升级与硬件配套方案",
+        lblCcbFrontSize: "推荐前碳陶盘尺寸 (Front CCB)",
+        lblCcbRearSize: "推荐后碳陶盘尺寸 (Rear CCB)",
+        lblHatSelect: "中心花盒结构 (D码选择 / 搭配卡钳)",
+        lblUpgradeLug: "建议 (BOLT)螺丝 / (NUT) 螺帽 (含长度试算)",
+        lblWeightSaving: "簧下重量减轻效益 (Unsprung Weight)",
+        lblCcbType: "碳陶盘结构系列 (纤维系列)",
+        lblPadSelect: "推荐专用刹车片 (配方选择)",
+        lblEpbDetail: "后轴 EPB 电子手刹与卡钳转接配套",
+        lblSafetyDetail: "螺丝安全锁固深度与总泵脚感建议",
+        lblClearanceDetail: "改装轴套 (Hub Ring) 与卡钳横向 X-Factor 隙样",
+        
+        hatOptions: {
+            D60: "D60 (大花盒 / 推荐大六,大八活塞卡钳)",
+            D54: "D54 (小花盒 / 推荐双向,单向浮动卡钳)"
+        },
+        ccbOptions: {
+            SS: "SS 短纤 (街道系列)",
+            SCS: "SCS 短纤+涂层 (运动涂层系列)",
+            TS: "TS 长纤 (赛道系列)",
+            TCS: "TCS 长纤+涂层 (专业竞技涂层系列)",
+            LFFS: "LFFS 长纤毡体 (顶级竞技系列)"
+        },
+        padOptions: {
+            STREET: { opt: "STREET 街道版 (摩擦系数 0.42 / 耐温 600°C)", name: "STREET 街道版", mu: "0.42", temp: "600°C", feature: "高舒适度、低粉尘与安静表现。" },
+            SPORT: { opt: "SPORT 运动版 (摩擦系数 0.50 / 耐温 650°C)", name: "SPORT 运动版", mu: "0.50", temp: "650°C", feature: "兼顾线性脚感与连续刹车抗热衰能力。" },
+            RACING: { opt: "RACING 竞技版 (摩擦系数 0.60 / 耐温 700°C)", name: "RACING 竞技版", mu: "0.60", temp: "700°C", feature: "极高摩擦力，专为极限高温负荷设计。" }
+        }
+    },
+    "en": {
+        appTitle: "YAMARU Carbon Ceramic Brake (CCB) Fitment System Ultra Pro",
+        btnToggleManual: "Toggle Manual/API Mode",
+        btnPrint: "Print / Export Work Order PDF",
+        lblBrand: "1. Select Brand",
+        lblYear: "2. Select Year",
+        lblModel: "3. Select Model",
+        modelLoading: "Loading...",
+        optSelectBrand: "-- Select Brand --",
+        optSelectYear: "-- Select Year --",
+        optSelectModel: "-- Select Model --",
+        optFirstBrand: "-- Select Brand First --",
+        optFirstYear: "-- Select Year First --",
+        yearUnit: "",
+        secTitleOriginal: "OEM Stock Specifications",
+        lblOemFront: "OEM Front Rotor Size",
+        lblOemRear: "OEM Rear Rotor Size",
+        lblPcdCb: "PCD / Center Bore (CB)",
+        lblOemLug: "OEM Lug Bolt/Nut Spec (Length)",
+        lblEngineType: "Engine Type",
+        lblPowerTorque: "Max Power / Max Torque",
+        lblGearbox: "Transmission",
+        lblDrivetrain: "Drivetrain",
+        secTitleWheels: "Wheel Size & Offset Configuration (Front & Rear Independent)",
+        subTitleCurrentWheels: "[ Current Vehicle Installed Wheel Specs ]",
+        lblCurrentFrontWheel: "Current Front Wheel Size",
+        lblCurrentRearWheel: "Current Rear Wheel Size",
+        subTitleNewWheels: "[ Target Custom Wheel Specifications ]",
+        lblNewFrontBox: "Target Front Wheel Specs",
+        lblNewRearBox: "Target Rear Wheel Specs",
+        lblInch: "Diameter",
+        lblJ: "J Value",
+        lblET: "Offset (ET)",
+        unitInch: "\"",
+        secTitleUpgrade: "YAMARU Recommended CCB Upgrade & Hardware Package",
+        lblCcbFrontSize: "Rec. Front CCB Rotor Size",
+        lblCcbRearSize: "Rec. Rear CCB Rotor Size",
+        lblHatSelect: "Center Hat Structure (D-Code / Caliper Matching)",
+        lblUpgradeLug: "Rec. Lug Bolt / Nut Spec",
+        lblWeightSaving: "Unsprung Weight Benefit",
+        lblCcbType: "CCB Rotor Construction",
+        lblPadSelect: "Rec. Brake Pad Compound",
+        lblEpbDetail: "Rear EPB & Caliper Bracket Solution",
+        lblSafetyDetail: "Lug Thread Engagement & Master Cylinder Fitment",
+        lblClearanceDetail: "Hub Centric Ring & Caliper X-Factor Clearance",
+        
+        hatOptions: {
+            D60: "D60 (Large Hat / Rec. Big 6/8-Piston Calipers)",
+            D54: "D54 (Small Hat / Rec. 2-Way/Floating Calipers)"
+        },
+        ccbOptions: {
+            SS: "SS Short Fiber (Street)",
+            SCS: "SCS Short Fiber + Coating (Sport)",
+            TS: "TS Continuous Fiber (Track)",
+            TCS: "TCS Continuous Fiber + Coating (Pro Racing)",
+            LFFS: "LFFS Long Fiber Felt Structure (Ultimate Racing)"
+        },
+        padOptions: {
+            STREET: { opt: "STREET (μ 0.42 / Temp 600°C)", name: "STREET Compound", mu: "0.42", temp: "600°C", feature: "High comfort, low dust, ultra quiet." },
+            SPORT: { opt: "SPORT (μ 0.50 / Temp 650°C)", name: "SPORT Compound", mu: "0.50", temp: "650°C", feature: "Balanced pedal feedback and thermal fade resistance." },
+            RACING: { opt: "RACING (μ 0.60 / Temp 700°C)", name: "RACING Compound", mu: "0.60", temp: "700°C", feature: "Maximum friction, designed for extreme thermal load." }
+        }
+    },
+    "ja": {
+        appTitle: "YAMARU カーボンセラミック (CCB) 適合確認システム Ultra Pro",
+        btnToggleManual: "手動/APIモード切り替え",
+        btnPrint: "印刷 / 作業見積書PDF作成",
+        lblBrand: "1. 自動車ブランドを選択 (Brand)",
+        lblYear: "2. 年式を選択 (Year)",
+        lblModel: "3. 車種を選択 (Model)",
+        modelLoading: "読み込み中...",
+        optSelectBrand: "-- ブランドを選択 --",
+        optSelectYear: "-- 年式を選択 --",
+        optSelectModel: "-- 車種を選択 --",
+        optFirstBrand: "-- 最初にブランドを選択 --",
+        optFirstYear: "-- 最初に年式を選択 --",
+        yearUnit: "年式",
+        secTitleOriginal: "上段：車両純正オリジナルスペックデータ",
+        lblOemFront: "純正フロントディスク径",
+        lblOemRear: "純正リアディスク径",
+        lblPcdCb: "PCD / センターハブ径 (CB)",
+        lblOemLug: "純正ボルト/ナット規格 (首下長)",
+        lblEngineType: "エンジン型式",
+        lblPowerTorque: "最高出力 / 最大トルク",
+        lblGearbox: "トランスミッション",
+        lblDrivetrain: "駆動方式",
+        secTitleWheels: "中段：前後ホイールサイズ＆インセット変更（前後独立設定）",
+        subTitleCurrentWheels: "【現車装着 / 純正ホイールスペック】",
+        lblCurrentFrontWheel: "フロント装着ホイールサイズ",
+        lblCurrentRearWheel: "リア装着ホイールサイズ",
+        subTitleNewWheels: "【変更予定カスタムホイールスペック】",
+        lblNewFrontBox: "フロント (Front) 変更スペック",
+        lblNewRearBox: "リア (Rear) 変更スペック",
+        lblInch: "インチ",
+        lblJ: "J数",
+        lblET: "インセット (ET)",
+        unitInch: "インチ",
+        secTitleUpgrade: "下段：YAMARU 自動計算 CCBアップグレード＆パーツ構成案",
+        lblCcbFrontSize: "推奨フロントCCBローター径 (Front CCB)",
+        lblCcbRearSize: "推奨リアCCBローター径 (Rear CCB)",
+        lblHatSelect: "センターハブ構造 (Dコード選択 / キャリパー対応)",
+        lblUpgradeLug: "推奨 (BOLT)ボルト / (NUT) ナット",
+        lblWeightSaving: "バネ下重量軽減効果 (Unsprung Weight)",
+        lblCcbType: "CCBディスク構造シリーズ",
+        lblPadSelect: "推奨専用ブレーキパッド (配合)",
+        lblEpbDetail: "リア EPB 電子パーキングブレーキ対応",
+        lblSafetyDetail: "ボルト有効ネジ部深さ＆マスターシリンダー適合",
+        lblClearanceDetail: "ハブリング ＆ キャリパー横方向 X-Factor",
+        
+        hatOptions: {
+            D60: "D60 (大ベルハウジング / 大型6/8ピストンキャリパー推奨)",
+            D54: "D54 (小ベルハウジング / 2WAY/片押しキャリパー推奨)"
+        },
+        ccbOptions: {
+            SS: "SS チョップドファイバー (ストリート)",
+            SCS: "SCS チョップド＋コーティング (スポーツ)",
+            TS: "TS 連続長繊維 (サーキット)",
+            TCS: "TCS 連続長繊維＋コーティング (レーシング)",
+            LFFS: "LFFS ロングファイバーフェルト構造 (最高峰レーシング)"
+        },
+        padOptions: {
+            STREET: { opt: "STREET ストリート (摩擦係数 0.42 / 耐熱 600°C)", name: "STREET ストリート", mu: "0.42", temp: "600°C", feature: "高快適性・低ダスト・静粛性重視。" },
+            SPORT: { opt: "SPORT スポーツ (摩擦係数 0.50 / 耐熱 650°C)", name: "SPORT スポーツ", mu: "0.50", temp: "650°C", feature: "ダイレクトなペダルタッチと耐フェード性能を両立。" },
+            RACING: { opt: "RACING レーシング (摩擦係数 0.60 / 耐熱 700°C)", name: "RACING レーシング", mu: "0.60", temp: "700°C", feature: "超高摩耗力。限界領域での高熱負荷専用設計。" }
+        }
+    }
+};
+
+const targetBrands = [
+    { name: "特斯拉 (Tesla)", apiValue: "TESLA" },
+    { name: "豐田汽車 (Toyota)", apiValue: "TOYOTA" },
+    { name: "比亞迪 (BYD)", apiValue: "BYD" },
+    { name: "小米汽車 (Xiaomi)", apiValue: "XIAOMI" },
+    { name: "通用汽車 (General Motors)", apiValue: "GENERAL MOTORS" },
+    { name: "法拉利 (Ferrari)", apiValue: "FERRARI" },
+    { name: "現代汽車 (Hyundai)", apiValue: "HYUNDAI" },
+    { name: "福特汽車 (Ford)", apiValue: "FORD" },
+    { name: "梅賽德斯-賓士 (Mercedes-Benz)", apiValue: "MERCEDES-BENZ" },
+    { name: "保時捷 (Porsche)", apiValue: "PORSCHE" },
+    { name: "福斯集團 (Volkswagen)", apiValue: "VOLKSWAGEN" },
+    { name: "寶馬集團 (BMW Group)", apiValue: "BMW" },
+    { name: "本田技研 (Honda)", apiValue: "HONDA" },
+    { name: "起亞汽車 (Kia)", apiValue: "KIA" },
+    { name: "鈴木汽車 (Suzuki)", apiValue: "SUZUKI" },
+    { name: "Rivian", apiValue: "RIVIAN" },
+    { name: "Volvo", apiValue: "VOLVO" },
+    { name: "Jeep", apiValue: "JEEP" }
+];
+
+const yamaruCustomDb = {
+    "TESLA": {
+        "MODEL S": { 
+            oemFront: "380 x 32 mm", oemRear: "365 x 28 mm", pcdCb: "5x120 / CB 64.1mm", cbVal: 64.1,
+            oemLugThread: "M14-1.50", oemLugSeat: "錐座", oemLugType: "BOLT", oemLugLen: 28, oemET: 35,
+            frontWheel: "19吋 / 8.5J / ET35", rearWheel: "19吋 / 9.5J / ET35",
+            engineType: "三馬達永磁同步 (Plaid)", powerTorque: "1,020 hp / 1,424 Nm", gearbox: "單速固定齒比", drivetrain: "全輪驅動 (AWD)", epbType: "EPB 一體式專用卡鉗"
+        },
+        "MODEL 3": { 
+            oemFront: "355 x 25 mm", oemRear: "335 x 20 mm", pcdCb: "5x114.3 / CB 64.1mm", cbVal: 64.1,
+            oemLugThread: "M14-1.50", oemLugSeat: "錐座", oemLugType: "NUT", oemLugLen: 35, oemET: 40,
+            frontWheel: "19吋 / 8.5J / ET40", rearWheel: "19吋 / 8.5J / ET40",
+            engineType: "雙馬達感應/永磁 (Performance)", powerTorque: "460 hp / 660 Nm", gearbox: "單速固定齒比", drivetrain: "全輪驅動 (AWD)", epbType: "EPB 雙卡鉗轉接座方案"
+        }
+    },
+    "BMW": {
+        "M3": { 
+            oemFront: "380 x 36 mm", oemRear: "370 x 24 mm", pcdCb: "5x112 / CB 66.6mm", cbVal: 66.6,
+            oemLugThread: "M14-1.25", oemLugSeat: "錐座 60度", oemLugType: "BOLT", oemLugLen: 27, oemET: 20,
+            frontWheel: "19吋 / 9.5J / ET20", rearWheel: "20吋 / 10.5J / ET20",
+            engineType: "S58B30T0 3.0L 直列六缸雙渦輪", powerTorque: "510 hp / 650 Nm", gearbox: "8速 M Steptronic 手自排", drivetrain: "後輪驅動 (FR) / M xDrive", epbType: "EPB 一體式改裝卡鉗"
+        }
+    },
+    "PORSCHE": {
+        "911": {
+            oemFront: "380 x 34 mm", oemRear: "380 x 30 mm", pcdCb: "5x130 / CB 71.6mm", cbVal: 71.6,
+            oemLugThread: "M14-1.50", oemLugSeat: "球座", oemLugType: "BOLT", oemLugLen: 30, oemET: 50,
+            frontWheel: "20吋 / 8.5J / ET50", rearWheel: "21吋 / 11.5J / ET67",
+            engineType: "3.0L 水平對臥六缸雙渦輪 (Boxer 6)", powerTorque: "450 PS / 530 Nm", gearbox: "8速 PDK 雙離合器", drivetrain: "後輪驅動 (RR) / 全輪驅動 (AWD)", epbType: "EPB 專用原廠匹配方案"
+        }
+    },
+    "XIAOMI": {
+        "SU7": { 
+            oemFront: "400 x 38 mm", oemRear: "365 x 28 mm", pcdCb: "5x120 / CB 64.1mm", cbVal: 64.1,
+            oemLugThread: "M14-1.50", oemLugSeat: "錐座", oemLugType: "NUT", oemLugLen: 35, oemET: 35,
+            frontWheel: "19吋 / 8.5J / ET35", rearWheel: "19吋 / 9.5J / ET35",
+            engineType: "三馬達 (V8s + V6s) / Ultra 專用", powerTorque: "1,548 PS / 1,770 Nm", gearbox: "單速固定齒比", drivetrain: "全輪驅動 (AWD)", epbType: "EPB 一體式高階卡鉗"
+        }
+    }
+};
+
+let currentLang = "zh-TW";
+let currentCarSpec = null;
+
+function getCurrentDict() {
+    return i18n[currentLang] || i18n["zh-TW"];
+}
+
+// 自動匹配 YAMARU 102 款規格核心演算法（加入選取之 D碼比對）
+function findBestCCBSpec(rimSize, position, targetHatD) {
+    let maxD = 360;
+    if (rimSize >= 21) maxD = 425;
+    else if (rimSize >= 20) maxD = 400;
+    else if (rimSize >= 19) maxD = 380;
+    else maxD = 360;
+
+    if (position === 'rear') {
+        maxD -= 15;
+    }
+
+    // 優先比對直徑符合且 D碼 (如 D60 / D54) 完全一致的項目
+    let eligible = yamaru102Specs.filter(item => item.d <= maxD && item.d1 === targetHatD);
+    
+    // 若特定 D碼無精準匹配，降級為僅比對直徑
+    if (eligible.length === 0) {
+        eligible = yamaru102Specs.filter(item => item.d <= maxD);
+    }
+    
+    if (eligible.length === 0) return "No. 001 (330 x 22 x D54)";
+
+    const best = eligible[eligible.length - 1];
+    return `No. ${best.no}<br><span style="font-size: 1.1rem; color: #fff;">(${best.spec})</span>`;
+}
+
+function changeLanguage() {
+    currentLang = document.getElementById('langSelect').value;
+    const dict = getCurrentDict();
+
+    document.getElementById('appTitle').textContent = dict.appTitle;
+    document.getElementById('btnToggleManual').textContent = dict.btnToggleManual;
+    document.getElementById('btnPrint').textContent = dict.btnPrint;
+
+    document.getElementById('lblBrand').textContent = dict.lblBrand;
+    document.getElementById('lblYear').textContent = dict.lblYear;
+    document.getElementById('lblModel').textContent = dict.lblModel;
+    document.getElementById('modelLoading').textContent = dict.modelLoading;
+
+    document.getElementById('secTitleOriginal').textContent = dict.secTitleOriginal;
+    document.getElementById('lblOemFront').textContent = dict.lblOemFront;
+    document.getElementById('lblOemRear').textContent = dict.lblOemRear;
+    document.getElementById('lblPcdCb').textContent = dict.lblPcdCb;
+    document.getElementById('lblOemLug').textContent = dict.lblOemLug;
+    document.getElementById('lblEngineType').textContent = dict.lblEngineType;
+    document.getElementById('lblPowerTorque').textContent = dict.lblPowerTorque;
+    document.getElementById('lblGearbox').textContent = dict.lblGearbox;
+    document.getElementById('lblDrivetrain').textContent = dict.lblDrivetrain;
+
+    document.getElementById('secTitleWheels').textContent = dict.secTitleWheels;
+    document.getElementById('subTitleCurrentWheels').textContent = dict.subTitleCurrentWheels;
+    document.getElementById('lblCurrentFrontWheel').textContent = dict.lblCurrentFrontWheel;
+    document.getElementById('lblCurrentRearWheel').textContent = dict.lblCurrentRearWheel;
+    document.getElementById('subTitleNewWheels').textContent = dict.subTitleNewWheels;
+    document.getElementById('lblNewFrontBox').textContent = dict.lblNewFrontBox;
+    document.getElementById('lblNewRearBox').textContent = dict.lblNewRearBox;
+
+    document.querySelectorAll('.lblInch').forEach(el => el.textContent = dict.lblInch);
+    document.querySelectorAll('.lblJ').forEach(el => el.textContent = dict.lblJ);
+    document.querySelectorAll('.lblET').forEach(el => el.textContent = dict.lblET);
+
+    document.getElementById('secTitleUpgrade').textContent = dict.secTitleUpgrade;
+    document.getElementById('lblCcbFrontSize').textContent = dict.lblCcbFrontSize;
+    document.getElementById('lblCcbRearSize').textContent = dict.lblCcbRearSize;
+    document.getElementById('lblHatSelect').textContent = dict.lblHatSelect;
+    document.getElementById('lblUpgradeLug').textContent = dict.lblUpgradeLug;
+    document.getElementById('lblWeightSaving').textContent = dict.lblWeightSaving;
+    document.getElementById('lblCcbType').textContent = dict.lblCcbType;
+    document.getElementById('lblPadSelect').textContent = dict.lblPadSelect;
+    document.getElementById('lblEpbDetail').textContent = dict.lblEpbDetail;
+    document.getElementById('lblSafetyDetail').textContent = dict.lblSafetyDetail;
+    document.getElementById('lblClearanceDetail').textContent = dict.lblClearanceDetail;
+
+    updateSelectOptionsText();
+    calculateDynamicUpgrade();
+}
+
+function updateSelectOptionsText() {
+    const dict = getCurrentDict();
+    
+    // 更新 D碼 Select (Hat Select)
+    const hatSel = document.getElementById('hatSelect');
+    const selectedHat = hatSel.value || "D60";
+    hatSel.innerHTML = "";
+    for (let k in dict.hatOptions) {
+        let opt = document.createElement('option');
+        opt.value = k;
+        opt.textContent = dict.hatOptions[k];
+        if (k === selectedHat) opt.selected = true;
+        hatSel.appendChild(opt);
+    }
+
+    // 更新 CCB Type Select
+    const ccbSel = document.getElementById('ccbTypeSelect');
+    const selectedCCB = ccbSel.value || "TS";
+    ccbSel.innerHTML = "";
+    for (let k in dict.ccbOptions) {
+        let opt = document.createElement('option');
+        opt.value = k;
+        opt.textContent = dict.ccbOptions[k];
+        if (k === selectedCCB) opt.selected = true;
+        ccbSel.appendChild(opt);
+    }
+
+    // 更新 Pad Select
+    const padSel = document.getElementById('padSelect');
+    const selectedPad = padSel.value || "SPORT";
+    padSel.innerHTML = "";
+    for (let k in dict.padOptions) {
+        let opt = document.createElement('option');
+        opt.value = k;
+        opt.textContent = dict.padOptions[k].opt;
+        if (k === selectedPad) opt.selected = true;
+        padSel.appendChild(opt);
+    }
+}
+
+function clearSpecsUI() {
+    currentCarSpec = null;
+    document.getElementById('oemFront').textContent = "-";
+    document.getElementById('oemRear').textContent = "-";
+    document.getElementById('pcdCb').textContent = "-";
+    document.getElementById('oemLug').textContent = "-";
+
+    document.getElementById('engineType').textContent = "-";
+    document.getElementById('powerTorque').textContent = "-";
+    document.getElementById('gearbox').textContent = "-";
+    document.getElementById('drivetrain').textContent = "-";
+
+    document.getElementById('currentFrontWheelDisplay').textContent = "-";
+    document.getElementById('currentRearWheelDisplay').textContent = "-";
+
+    document.getElementById('ccbFrontSize').textContent = "-";
+    document.getElementById('ccbRearSize').textContent = "-";
+    document.getElementById('weightSaving').textContent = "-";
+    document.getElementById('upgradeLug').textContent = "-";
+    document.getElementById('padDetail').textContent = "-";
+    document.getElementById('epbDetail').textContent = "-";
+    document.getElementById('safetyDetail').textContent = "-";
+    document.getElementById('clearanceDetail').textContent = "-";
+}
+
+function initBrands() {
+    const dict = getCurrentDict();
+    const brandSel = document.getElementById('brandSelect');
+    brandSel.innerHTML = `<option value="">${dict.optSelectBrand}</option>`;
+    targetBrands.forEach(b => {
+        let opt = document.createElement('option');
+        opt.value = b.apiValue;
+        opt.textContent = b.name;
+        brandSel.appendChild(opt);
+    });
+    updateSelectOptionsText();
+}
+
+function onBrandChange() {
+    const dict = getCurrentDict();
+    const brand = document.getElementById('brandSelect').value;
+    const yearSel = document.getElementById('yearSelect');
+    const modelSel = document.getElementById('modelSelect');
+
+    yearSel.innerHTML = `<option value="">${dict.optSelectYear}</option>`;
+    modelSel.innerHTML = `<option value="">${dict.optFirstYear}</option>`;
+    modelSel.disabled = true;
+    clearSpecsUI();
+
+    if (!brand) {
+        yearSel.disabled = true;
+        return;
+    }
+
+    const currentYear = new Date().getFullYear();
+    for (let y = currentYear + 1; y >= 1998; y--) {
+        let opt = document.createElement('option');
+        opt.value = y;
+        opt.textContent = y + dict.yearUnit;
+        yearSel.appendChild(opt);
+    }
+    yearSel.disabled = false;
+}
+
+async function onYearChange() {
+    const dict = getCurrentDict();
+    const brand = document.getElementById('brandSelect').value;
+    const year = document.getElementById('yearSelect').value;
+    const modelSel = document.getElementById('modelSelect');
+    const modelLoading = document.getElementById('modelLoading');
+
+    modelSel.innerHTML = `<option value="">${dict.optSelectModel}</option>`;
+    clearSpecsUI();
+
+    if (!brand || !year) {
+        modelSel.disabled = true;
+        return;
+    }
+
+    modelLoading.style.display = 'inline';
+    modelSel.disabled = true;
+
+    try {
+        const res = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformakeyear/make/${encodeURIComponent(brand)}/modelyear/${year}?format=json`);
+        const data = await res.json();
+
+        let models = [...new Set(data.Results.map(item => item.Model_Name))].sort();
+
+        if (models.length === 0) {
+            if (brand === "XIAOMI") models = ["SU7", "SU7 Pro", "SU7 Max", "SU7 Ultra"];
+            else if (brand === "BYD") models = ["U9", "U8", "Han", "Seal"];
+            else models = ["General Model"];
+        }
+
+        models.forEach(m => {
+            let opt = document.createElement('option');
+            opt.value = m;
+            opt.textContent = m;
+            modelSel.appendChild(opt);
+        });
+
+        modelSel.disabled = false;
+    } catch (e) {
+        let opt = document.createElement('option');
+        opt.value = "General Model";
+        opt.textContent = "General Model";
+        modelSel.appendChild(opt);
+        modelSel.disabled = false;
+    } finally {
+        modelLoading.style.display = 'none';
+    }
+}
+
+function renderSpecs() {
+    const brand = document.getElementById('brandSelect').value;
+    const modelSelectElem = document.getElementById('modelSelect');
+    const model = modelSelectElem.value ? modelSelectElem.value.toUpperCase() : "";
+
+    if (!brand || !model) {
+        clearSpecsUI();
+        return;
+    }
+
+    let spec = null;
+
+    if (yamaruCustomDb[brand]) {
+        for (let key in yamaruCustomDb[brand]) {
+            if (model.includes(key) || key.includes(model)) {
+                spec = yamaruCustomDb[brand][key];
+                break;
+            }
+        }
+    }
+
+    if (!spec) {
+        let isEuropean = ["BMW", "MERCEDES-BENZ", "PORSCHE", "VOLKSWAGEN", "FERRARI", "VOLVO", "AUDI"].includes(brand);
+        let isEV = ["TESLA", "BYD", "XIAOMI", "RIVIAN"].includes(brand);
+
+        spec = {
+            oemFront: isEuropean ? "370 x 32 mm" : "350 x 30 mm",
+            oemRear: isEuropean ? "350 x 24 mm" : "330 x 24 mm",
+            pcdCb: isEuropean ? "5x112 / CB 66.6mm" : "5x114.3 / CB 60.1mm",
+            cbVal: isEuropean ? 66.6 : 60.1,
+            oemLugThread: isEuropean ? "M14-1.50" : "M12-1.50",
+            oemLugSeat: "錐座",
+            oemLugType: isEuropean ? "BOLT" : "NUT",
+            oemLugLen: 28,
+            oemET: 35,
+            frontWheel: isEuropean ? "19吋 / 8.5J / ET35" : "18吋 / 8.0J / ET40",
+            rearWheel: isEuropean ? "19吋 / 9.5J / ET35" : "18吋 / 8.0J / ET40",
+            engineType: isEV ? "高功率永磁同步馬達 (EV)" : (isEuropean ? "2.0L / 3.0L 渦輪增壓引擎" : "2.0L 直列四缸自然進氣/渦輪引擎"),
+            powerTorque: isEV ? "300 PS ~ 600 PS / 400~800 Nm" : "200 PS ~ 380 PS / 300~500 Nm",
+            gearbox: isEV ? "單速固定齒比" : (isEuropean ? "8速手自排 / 7速雙離合器" : "CVT / 6速手自排"),
+            drivetrain: isEuropean ? "後輪驅動 (FR) / 全輪驅動 (AWD)" : "前輪驅動 (FF) / 四輪驅動 (4WD)",
+            epbType: "EPB 雙卡鉗專用轉接橋方案"
+        };
+    }
+
+    currentCarSpec = spec;
+
+    document.getElementById('oemFront').textContent = spec.oemFront || "-";
+    document.getElementById('oemRear').textContent = spec.oemRear || "-";
+    document.getElementById('pcdCb').textContent = spec.pcdCb || "-";
+    document.getElementById('oemLug').textContent = `${spec.oemLugThread} ${spec.oemLugSeat} [${spec.oemLugType}] (長度 ${spec.oemLugLen}mm)`;
+
+    document.getElementById('engineType').textContent = spec.engineType || "原廠標準動力規格";
+    document.getElementById('powerTorque').textContent = spec.powerTorque || "請參照原廠出廠規格";
+    document.getElementById('gearbox').textContent = spec.gearbox || "原廠變速箱配置";
+    document.getElementById('drivetrain').textContent = spec.drivetrain || "原廠驅動配置";
+
+    document.getElementById('currentFrontWheelDisplay').textContent = spec.frontWheel || "-";
+    document.getElementById('currentRearWheelDisplay').textContent = spec.rearWheel || "-";
+
+    calculateDynamicUpgrade();
+}
+
+function calculateDynamicUpgrade() {
+    if (!currentCarSpec) return;
+    const dict = getCurrentDict();
+
+    const newFrontSize = parseInt(document.getElementById('newFrontSize').value);
+    const newFrontJ = parseFloat(document.getElementById('newFrontJ').value);
+    const newFrontET = parseInt(document.getElementById('newFrontET').value);
+
+    const newRearSize = parseInt(document.getElementById('newRearSize').value);
+    const newRearJ = parseFloat(document.getElementById('newRearJ').value);
+    const newRearET = parseInt(document.getElementById('newRearET').value);
+
+    const targetHatD = document.getElementById('hatSelect').value || "D60";
+    const selectedPadKey = document.getElementById('padSelect').value || "SPORT";
+
+    // 1. 根據車主/客戶選取的 D碼 (D60 / D54) 即時演算比對 YAMARU 102 款庫
+    let frontCCB = findBestCCBSpec(newFrontSize, 'front', targetHatD);
+    let rearCCB = findBestCCBSpec(newRearSize, 'rear', targetHatD);
+    let weightSavedKg = (newFrontSize >= 20 || newRearSize >= 20) ? 16.5 : 14.8;
+
+    // 2. 輕量化效益
+    let weightStr = `約 <strong>-${weightSavedKg} kg</strong> <span class="badge badge-green">${dict.unsprungText}</span><br>` +
+                    `<span style="font-size:0.8rem; color:#a0a0a0;">${dict.unsprungDesc}</span>`;
+
+    // 3. 螺絲長度試算
+    let etDiff = currentCarSpec.oemET - newFrontET;
+    let suggestedLength = currentCarSpec.oemLugLen + (etDiff > 0 ? etDiff : 0);
+    let finalLengthStr = suggestedLength < 38 ? "38mm" : `${suggestedLength}mm`;
+
+    let upgradeLugStr = `${dict.lugSpec}<span class="val-neon-sm">${currentCarSpec.oemLugThread}</span><br>` +
+                        `${dict.safeLen}<span class="val-neon-sm">(${finalLengthStr})</span>`;
+
+    // 4. 煞車皮詳細資訊
+    const pad = dict.padOptions[selectedPadKey] || dict.padOptions["SPORT"];
+    let padDetailStr = `<strong>【${pad.name}】</strong><br>` +
+                       `μ: ${pad.mu} | Temp: ${pad.temp}<br>` +
+                       `${pad.feature}`;
+
+    // 5. 後軸 EPB 配套
+    let epbSpaceText = dict.epbSpaceDesc.replace("{rearCCB}", rearCCB.replace(/<[^>]+>/g, ' '));
+    let epbStr = `<strong>${dict.epbTitle}</strong>${currentCarSpec.epbType}<br>` +
+                 `<strong>${dict.epbSpaceTitle}</strong>${epbSpaceText}`;
+
+    // 6. 安全鎖固與總泵腳感
+    let isM14 = currentCarSpec.oemLugThread.includes("M14");
+    let minTurns = isM14 ? "9 圈 (≥13.5mm)" : "8 圈 (≥12.0mm)";
+    let safetyStr = `<strong>${dict.screwTurnsTitle}</strong>${currentCarSpec.oemLugThread} ${dict.screwTurnsMin}<strong>${minTurns}</strong>。<br>` +
+                    `<strong>${dict.masterCylinderTitle}</strong>${dict.masterCylinderDesc}`;
+
+    // 7. 中心軸套與 Clearance 隙樣
+    let cbVal = currentCarSpec.cbVal || 66.6;
+    let hubRingDescText = dict.hubRingDesc.replace("{cbVal}", cbVal);
+    let hubRingStr = `${dict.hubRingTitle}${hubRingDescText}`;
+    
+    let frontCalStr = dict.caliperXFront.replace("{newFrontET}", newFrontET).replace("{newFrontJ}", newFrontJ).replace("{etDiff}", etDiff > 0 ? etDiff : 0);
+    let rearCalStr = dict.caliperXRear.replace("{newRearET}", newRearET).replace("{newRearJ}", newRearJ);
+    
+    let clearanceDetailStr = `<strong>${hubRingStr}</strong><br>` +
+                             `<strong>${dict.caliperXTitle}</strong>${frontCalStr} / ${rearCalStr}${dict.caliperXSpace}`;
+
+    // 寫回 DOM
+    document.getElementById('ccbFrontSize').innerHTML = frontCCB;
+    document.getElementById('ccbRearSize').innerHTML = rearCCB;
+    document.getElementById('weightSaving').innerHTML = weightStr;
+    document.getElementById('upgradeLug').innerHTML = upgradeLugStr;
+    document.getElementById('padDetail').innerHTML = padDetailStr;
+    document.getElementById('epbDetail').innerHTML = epbStr;
+    document.getElementById('safetyDetail').innerHTML = safetyStr;
+    document.getElementById('clearanceDetail').innerHTML = clearanceDetailStr;
+}
+
+function toggleManualMode() {
+    const dict = getCurrentDict();
+    alert(dict.manualAlert);
+}
+
+// 初始化
+initBrands();
+</script>
+
+</body>
+</html>
